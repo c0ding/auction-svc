@@ -14,7 +14,7 @@ This is a small server that can get the user referral code based on their accoun
 The following command is used to start server only at local.
 
 ```
-# 2
+# 3
 yarn start
 ```
 
