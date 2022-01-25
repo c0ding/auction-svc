@@ -12,10 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Use node version 14
+      - name: Use node version 14.17.6
         uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 14.17.6
           registry-url: https://registry.npmjs.org
 
       - name: Run lint, unit tests
@@ -40,7 +40,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: auction-svc-github-actions-test  # !todo  Switch to the prod repo
-          IMAGE_TAG: ${{ github.sha }}  # use github commitID as images-tag 
+          IMAGE_TAG: ${{ github.sha }}  
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
