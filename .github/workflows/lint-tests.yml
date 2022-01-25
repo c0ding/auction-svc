@@ -18,11 +18,11 @@ jobs:
           node-version: 14.17.6
           registry-url: https://registry.npmjs.org
 
-      - name: Run lint, unit tests
-        run: |
-          yarn
-          yarn lint
-          yarn test
+      # - name: Run lint, unit tests
+      #   run: |
+      #     yarn
+      #     yarn lint
+      #     yarn test
           
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
