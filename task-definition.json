@@ -3,7 +3,6 @@
   "containerDefinitions": [
       {
           "name": "auction-stagting-copy",
-          "image": "165550724216.dkr.ecr.us-east-2.amazonaws.com/crowdloan-cauction-service:latest",
           "cpu": 0,
           "portMappings": [
               {
