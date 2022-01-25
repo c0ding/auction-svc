@@ -2,7 +2,7 @@
   "taskDefinitionArn": "arn:aws:ecs:us-east-2:165550724216:task-definition/auction-service-staging-copy:1",
   "containerDefinitions": [
       {
-          "name": "auction-stagting-copy",
+          "name": "auction-service-staging-a",
           "cpu": 0,
           "portMappings": [
               {
