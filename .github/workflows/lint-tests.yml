@@ -56,5 +56,5 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json
-          container-name: auction-service-staging-a
+          container-name: auction-stagting-copy
           image: ${{ steps.build-image.outputs.image }}
