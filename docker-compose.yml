@@ -1,0 +1,68 @@
+version: '3.7'
+services:
+  api:
+    image: node:14.17.0
+    environment:
+      - NODE_ENV=development
+    working_dir: /home/node/app
+    volumes:
+      - ./:/home/node/app
+    ports:
+      - '3000:3000'
+    depends_on:
+      - redis
+      - postgres
+      - migration
+      - mongodb
+    command: bash -c "yarn && yarn start"
+
+  mongodb:
+    image: mongo:latest
+    container_name: 'mongodb'
+    environment:
+      - MONGO_INITDB_DATABASE=${MONGO_DB_NAME}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_DB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_DB_PASSWORD}
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./data/mongo:/data/db
+    command: mongod
+
+  redis:
+    image: redis:latest
+    container_name: 'redis'
+    ports:
+      - '6379:6379'
+
+  postgres:
+    image: postgres:14
+    container_name: 'postgres'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h localhost -p ${POSTGRES_DB_PORT} -U ${POSTGRES_DB_USER} -d ${POSTGRES_DB_NAME}"]
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB_NAME}
+      - POSTGRES_USER=${POSTGRES_DB_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_DB_PASSWORD}
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    command: ["postgres", "-c", "log_statement=all", "-c", "log_destination=stderr"]
+
+  migration:
+    image: flyway/flyway:8.2.2
+    container_name: 'migration'
+    environment:
+      - POSTGRES_DB_HOST
+      - POSTGRES_DB_PORT
+      - POSTGRES_DB_NAME
+      - POSTGRES_DB_USER
+      - POSTGRES_DB_PASSWORD
+    volumes:
+      - ./db/migration:/flyway/sql
+      - ./db/config:/flyway/conf
+    command: migrate
+    depends_on:
+      postgres:
+        condition: service_healthy

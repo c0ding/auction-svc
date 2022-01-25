@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS user_project_reward_info (
+    id SERIAL PRIMARY KEY,
+    ori_address varchar(100) NOT NULL,
+    para_id INT NOT NULL,
+    crowdloan_id varchar(100) NOT NULL,
+    lease_start INT NOT NULL,
+    lease_end INT NOT NULL,
+    dot_amount varchar(100) NOT NULL,
+    project_base_bonus varchar(100) NOT NULL,
+    project_referral_bonus varchar(100) NOT NULL,
+    project_early_bird_bonus varchar(100) NOT NULL,
+    project_other_bonus varchar(100) NOT NULL,
+    project_total_rewards varchar(100) NOT NULL,
+    project_reward_ratio FLOAT NOT NULL,
+    para_base_bonus varchar(100) NOT NULL,
+    para_referral_bonus varchar(100) NOT NULL,
+    para_reinvest_bonus varchar(100) NOT NULL,
+    para_other_bonus varchar(100) NOT NULL,
+    para_total_rewards varchar(100) NOT NULL,
+    project_decimal INT NOT NULL,
+    create_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);

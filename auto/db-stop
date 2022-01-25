@@ -1,0 +1,1 @@
+docker stop parallel-referral && docker rm parallel-referral;

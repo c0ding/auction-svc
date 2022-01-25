@@ -1,0 +1,14 @@
+CREATE TABLE IF NOT EXISTS moonbeam_reward_address(
+    id VARCHAR(100) NOT NULL PRIMARY KEY,
+    block_height INT NOT NULL,
+    account VARCHAR(100) NOT NULL,
+    reward_address VARCHAR(100),
+    timestamp TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS moonbeam_terms_signed(
+    id VARCHAR(100) NOT NULL PRIMARY KEY,
+    block_height INT NOT NULL,
+    account VARCHAR(100) NOT NULL,
+    timestamp TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);

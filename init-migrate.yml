@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  prd_migration:
+    image: flyway/flyway:8.2.2
+    container_name: prd_migration
+    environment:
+      - POSTGRES_DB_HOST
+      - POSTGRES_DB_PORT
+      - POSTGRES_DB_NAME
+      - POSTGRES_DB_USER
+      - POSTGRES_DB_PASSWORD
+    volumes:
+      - ./db/migration/V1:/flyway/sql
+      - ./db/config:/flyway/conf
+    command: migrate
