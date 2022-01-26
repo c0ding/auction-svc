@@ -51,7 +51,7 @@ jobs:
           task-definition: task-definition.json
           container-name: auction-stagting-copy
           image: ${{ steps.build-image.outputs.image }}
-          environment:
+          environment-variables: |
             PARALLEL_HEIKO_CROWDLOAN_SUBQUERY_ENDPOINT: https://api.subquery.network/sq/parallel-finance/parallel-crowdloan-subql__cGFyY
             POSTGRES_DB_HOST: refund-dev.cmjwalrf1qza.us-east-2.rds.amazonaws.com
             SUBVIS_KUSAMA_ENDPOINT: http://172.99.22.119:3000
