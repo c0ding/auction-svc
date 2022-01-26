@@ -19,6 +19,7 @@
                   "value": "https://api.subquery.network/sq/parallel-finance/parallel-crowdloan-subql__cGFyY"
               },
               {
+                STAGING_
                   "name": "POSTGRES_DB_HOST",
                   "value": "refund-dev.cmjwalrf1qza.us-east-2.rds.amazonaws.com"
               },
