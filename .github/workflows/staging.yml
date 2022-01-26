@@ -76,7 +76,7 @@ jobs:
             SUBVIS_KUSAMA_ENDPOINT=http://172.99.22.119:3000
             MONGO_DB_PASSWORD=8LhlUv6exmVCDiK805ITcEp9j4Z5d71M
             MONGO_DB_HOST=172.99.20.146:27017
-            SUBVIS_POLKADOT_ENDPOINT=${{ ABC }}
+            SUBVIS_POLKADOT_ENDPOINT=${{ secrets.ABC }}
             POSTGRES_DB_PASSWORD=61H9J5g3MPd4rOhAxsTRbLqne7IN647l
             POSTGRES_DB_USER=refund_dev
             PRICE_ENDPOINT=https://api.coinbase.com/v2/exchange-rates
