@@ -1,10 +1,11 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:us-east-2:165550724216:task-definition/auction-service-staging-copy:1",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-2:165550724216:task-definition/auction-svc-v2-staging:1",
   "containerDefinitions": [
       {
-          "name": "auction-stagting-copy",
-          "image": "165550724216.dkr.ecr.us-east-2.amazonaws.com/crowdloan-cauction-service:latest",
+          "name": "auction-svc-v2-staging",
+          "image": "165550724216.dkr.ecr.us-east-2.amazonaws.com/auction-svc-v2-staging:latest",
           "cpu": 0,
+          "links": [],
           "portMappings": [
               {
                   "containerPort": 3000,
@@ -13,20 +14,67 @@
               }
           ],
           "essential": true,
-          
+          "entryPoint": [],
+          "command": [],
+          "environment": [],
+          "environmentFiles": [],
           "mountPoints": [],
           "volumesFrom": [],
+          "secrets": [],
+          "dnsServers": [],
+          "dnsSearchDomains": [],
+          "extraHosts": [],
+          "dockerSecurityOptions": [],
+          "dockerLabels": {},
+          "ulimits": [],
           "logConfiguration": {
               "logDriver": "awslogs",
               "options": {
-                  "awslogs-group": "/ecs/auction-service-staging-copy",
+                  "awslogs-create-group": "true",
+                  "awslogs-group": "/ecs/auction-svc-v2-staging",
                   "awslogs-region": "us-east-2",
                   "awslogs-stream-prefix": "ecs"
-              }
-          }
+              },
+              "secretOptions": []
+          },
+          "systemControls": []
+      },
+      {
+          "name": "aws-otel-collector",
+          "image": "public.ecr.aws/aws-observability/aws-otel-collector:v0.14.1",
+          "cpu": 0,
+          "links": [],
+          "portMappings": [],
+          "essential": true,
+          "entryPoint": [],
+          "command": [
+              "--config=/etc/ecs/ecs-cloudwatch-xray.yaml"
+          ],
+          "environment": [],
+          "environmentFiles": [],
+          "mountPoints": [],
+          "volumesFrom": [],
+          "secrets": [],
+          "dnsServers": [],
+          "dnsSearchDomains": [],
+          "extraHosts": [],
+          "dockerSecurityOptions": [],
+          "dockerLabels": {},
+          "ulimits": [],
+          "logConfiguration": {
+              "logDriver": "awslogs",
+              "options": {
+                  "awslogs-create-group": "true",
+                  "awslogs-group": "/ecs/ecs-aws-otel-sidecar-collector",
+                  "awslogs-region": "us-east-2",
+                  "awslogs-stream-prefix": "ecs"
+              },
+              "secretOptions": []
+          },
+          "systemControls": []
       }
   ],
-  "family": "auction-service-staging-copy",
+  "family": "auction-svc-v2-staging",
   "taskRoleArn": "arn:aws:iam::165550724216:role/ecsTaskExecutionRole",
   "executionRoleArn": "arn:aws:iam::165550724216:role/ecsTaskExecutionRole",
   "networkMode": "awsvpc",
@@ -47,6 +95,9 @@
           "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
       },
       {
+          "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+      },
+      {
           "name": "com.amazonaws.ecs.capability.task-iam-role"
       },
       {
@@ -57,6 +108,9 @@
       },
       {
           "name": "ecs.capability.task-eni"
+      },
+      {
+          "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
       }
   ],
   "placementConstraints": [],
@@ -65,6 +119,7 @@
       "FARGATE"
   ],
   "runtimePlatform": {
+      "cpuArchitecture": "X86_64",
       "operatingSystemFamily": "LINUX"
   },
   "requiresCompatibilities": [
@@ -72,7 +127,16 @@
   ],
   "cpu": "2048",
   "memory": "4096",
-  "registeredAt": "2022-01-19T12:57:50.990Z",
+  "registeredAt": "2022-01-26T08:32:35.568Z",
   "registeredBy": "arn:aws:iam::165550724216:root",
-  "tags": []
+  "tags": [
+      {
+          "key": "ecs:taskDefinition:createdFrom",
+          "value": "ecs-console-v2"
+      },
+      {
+          "key": "ecs:taskDefinition:stackId",
+          "value": "arn:aws:cloudformation:us-east-2:165550724216:stack/ECS-Console-V2-TaskDefinition-53008964-0c0f-4994-9c06-3ae77d0981a5/7ff47c20-7e82-11ec-b857-065015ee39d8"
+      }
+  ]
 }
