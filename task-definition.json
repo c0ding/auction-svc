@@ -13,76 +13,7 @@
               }
           ],
           "essential": true,
-          "environment": [
-              {
-                  "name": "PARALLEL_HEIKO_CROWDLOAN_SUBQUERY_ENDPOINT",
-                  "value": "https://api.subquery.network/sq/parallel-finance/parallel-crowdloan-subql__cGFyY"
-              },
-              {
-                  "name": "POSTGRES_DB_HOST",
-                  "value": "refund-dev.cmjwalrf1qza.us-east-2.rds.amazonaws.com"
-              },
-              {
-                  "name": "SUBVIS_KUSAMA_ENDPOINT",
-                  "value": "http://172.99.22.119:3000"
-              },
-              {
-                  "name": "MONGO_DB_PASSWORD",
-                  "value": "8LhlUv6exmVCDiK805ITcEp9j4Z5d71M"
-              },
-              {
-                  "name": "MONGO_DB_HOST",
-                  "value": "172.99.20.146:27017"
-              },
-              {
-                  "name": "SUBVIS_POLKADOT_ENDPOINT",
-                  "value": "http://172.99.20.161:3000"
-              },
-              {
-                  "name": "POSTGRES_DB_PASSWORD",
-                  "value": "61H9J5g3MPd4rOhAxsTRbLqne7IN647l"
-              },
-              {
-                  "name": "POSTGRES_DB_USER",
-                  "value": "refund_dev"
-              },
-              {
-                  "name": "PRICE_ENDPOINT",
-                  "value": "https://api.coinbase.com/v2/exchange-rates"
-              },
-              {
-                  "name": "PARALLEL_MOONBEAM_SUBQUERY_ENDPOINT",
-                  "value": "https://api.subquery.network/sq/parallel-finance/crowdloan-for-moonbeam__cGFyY"
-              },
-              {
-                  "name": "POSTGRES_DB_NAME",
-                  "value": "polkadot_auction_dev"
-              },
-              {
-                  "name": "MONGO_DB_AUTH_SOURCE",
-                  "value": "referral"
-              },
-              {
-                  "name": "POSTGRES_DB_PORT",
-                  "value": "5432"
-              },
-              {
-                  "name": "PARALLEL_POLKADOT_ENDPOINT",
-                  "value": "https://api.subquery.network/sq/parallel-finance/auction-subquery__cGFyY"
-              },
-              {
-                  "name": "MONGO_DB_NAME",
-                  "value": "referral"
-              },
-              {
-                  "name": "REDIS_ENDPOINT",
-                  "value": "172.99.5.189:6379"
-              },
-              {
-                  "name": "MONGO_DB_USER",
-                  "value": "referral"
-              }
-          ],
+          
           "mountPoints": [],
           "volumesFrom": [],
           "logConfiguration": {
