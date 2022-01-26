@@ -1,0 +1,78 @@
+{
+  "taskDefinitionArn": "arn:aws:ecs:us-east-2:165550724216:task-definition/auction-svc-v2-prod:1",
+  "containerDefinitions": [
+      {
+          "name": "auction-svc-v2-prod",
+          "image": "165550724216.dkr.ecr.us-east-2.amazonaws.com/auction-svc-v2-prod:latest",
+          "cpu": 0,
+          "portMappings": [
+              {
+                  "containerPort": 3000,
+                  "hostPort": 3000,
+                  "protocol": "tcp"
+              }
+          ],
+          "essential": true,
+          "environment": [],
+          "mountPoints": [],
+          "volumesFrom": [],
+          "logConfiguration": {
+              "logDriver": "awslogs",
+              "options": {
+                  "awslogs-group": "/ecs/auction-svc-v2-prod",
+                  "awslogs-region": "us-east-2",
+                  "awslogs-stream-prefix": "ecs"
+              }
+          }
+      }
+  ],
+  "family": "auction-svc-v2-prod",
+  "taskRoleArn": "arn:aws:iam::165550724216:role/ecsTaskExecutionRole",
+  "executionRoleArn": "arn:aws:iam::165550724216:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "revision": 1,
+  "volumes": [],
+  "status": "ACTIVE",
+  "requiresAttributes": [
+      {
+          "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+      },
+      {
+          "name": "ecs.capability.execution-role-awslogs"
+      },
+      {
+          "name": "com.amazonaws.ecs.capability.ecr-auth"
+      },
+      {
+          "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+      },
+      {
+          "name": "com.amazonaws.ecs.capability.task-iam-role"
+      },
+      {
+          "name": "ecs.capability.execution-role-ecr-pull"
+      },
+      {
+          "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+      },
+      {
+          "name": "ecs.capability.task-eni"
+      }
+  ],
+  "placementConstraints": [],
+  "compatibilities": [
+      "EC2",
+      "FARGATE"
+  ],
+  "runtimePlatform": {
+      "operatingSystemFamily": "LINUX"
+  },
+  "requiresCompatibilities": [
+      "FARGATE"
+  ],
+  "cpu": "2048",
+  "memory": "4096",
+  "registeredAt": "2022-01-26T10:38:25.542Z",
+  "registeredBy": "arn:aws:iam::165550724216:root",
+  "tags": []
+}

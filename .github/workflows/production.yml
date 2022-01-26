@@ -1,13 +1,9 @@
-name: auction-service-staging
+name: auction-service-production
 
 on: 
   push: 
-    branches:
-        - main
-    # tags:
-    #   - 'v*'
-
-  # pull_request:
+    tags:
+      - 'v*'
     
 
 jobs:
@@ -54,7 +50,7 @@ jobs:
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: auction-svc-v2-staging
+          ECR_REPOSITORY: auction-svc-v2-prod
           IMAGE_TAG: ${{ github.sha }}  
           
         run: |
@@ -67,35 +63,36 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: staging-task-definition.json
-          container-name: auction-svc-v2-staging
+          task-definition: prod-task-definition.json
+          container-name: auction-svc-v2-prod
           image: ${{ steps.build-image.outputs.image }}
           environment-variables: |
-            SUBVIS_KUSAMA_ENDPOINT=http://172.99.22.119:3000
-            SUBVIS_POLKADOT_ENDPOINT=http://172.99.20.161:3000
-            POSTGRES_DB_HOST=refund-dev.cmjwalrf1qza.us-east-2.rds.amazonaws.com
-            POSTGRES_DB_PASSWORD=${{ secrets.STAGING_POSTGRES_DB_PASSWORD }}
-            POSTGRES_DB_USER=refund_dev
-            POSTGRES_DB_NAME=polkadot_auction_dev
+            SUBVIS_KUSAMA_ENDPOINT=https://api.subquery.network/sq/subvis-io/kusama-auction
+            SUBVIS_POLKADOT_ENDPOINT=https://api.subquery.network/sq/subvis-io/polkadot-auctions-and-crowdloans
+            POSTGRES_DB_HOST=parallel-refund.cmjwalrf1qza.us-east-2.rds.amazonaws.com
+            POSTGRES_DB_PASSWORD=${{ secrets.PROD_POSTGRES_DB_PASSWORD }}
+            POSTGRES_DB_USER=refund
+            POSTGRES_DB_NAME=polkadot_auction
             POSTGRES_DB_PORT=5432
             PRICE_ENDPOINT=https://api.coinbase.com/v2/exchange-rates
-            PARALLEL_MOONBEAM_SUBQUERY_ENDPOINT=https://api.subquery.network/sq/parallel-finance/crowdloan-for-moonbeam__cGFyY
-            PARALLEL_POLKADOT_ENDPOINT=https://api.subquery.network/sq/parallel-finance/auction-subquery__cGFyY
-            PARALLEL_HEIKO_CROWDLOAN_SUBQUERY_ENDPOINT=https://api.subquery.network/sq/parallel-finance/parallel-crowdloan-subql__cGFyY
-            REDIS_ENDPOINT=redis-1-staging.xfcm5w.ng.0001.use2.cache.amazonaws.com:6379
+            PARALLEL_MOONBEAM_SUBQUERY_ENDPOINT=https://api.subquery.network/sq/parallel-finance/crowdloan-for-moonbeam
+            PARALLEL_POLKADOT_ENDPOINT=https://api.subquery.network/sq/parallel-finance/auction-loan
+            PARALLEL_HEIKO_CROWDLOAN_SUBQUERY_ENDPOINT=https://api.subquery.network/sq/parallel-finance/parallel-crowdloan-subql
+            REDIS_ENDPOINT=redis-1.xfcm5w.ng.0001.use2.cache.amazonaws.com:6379
             MONGO_DB_AUTH_SOURCE=referral
             MONGO_DB_NAME=referral
-            MONGO_DB_HOST=172.99.20.146:27017
+            MONGO_DB_HOST=192.168.30.122:27017
             MONGO_DB_USER=referral
-            MONGO_DB_PASSWORD=${{ secrets.STAGING_MONGO_DB_PASSWORD }}
+            MONGO_DB_PASSWORD=${{ secrets.PROD_MONGO_DB_PASSWORD }}
+            
 
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: service-v2-staging
-          cluster: auction-service-staging
+          service: service-v2-prod
+          cluster: auction-service-prod
           wait-for-service-stability: true
 
 
