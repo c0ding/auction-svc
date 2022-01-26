@@ -94,7 +94,7 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: auction-service-v2-staging
+          service: service-v2-staging
           cluster: auction-service-staging
           wait-for-service-stability: true
 
