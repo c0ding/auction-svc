@@ -5,7 +5,7 @@ on:
     # tags:
     #   - 'v*'
 
-    
+
 jobs:
   Check:
     name: auction-service Check
@@ -17,12 +17,24 @@ jobs:
         with:
           node-version: 14.17.6
           registry-url: https://registry.npmjs.org
+      - name: Run lint, unit tests
+        run: |
+          yarn
+          yarn lint
+          yarn test
           
 
   CICD:
     name: auction-service ci cd
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+      - name: Use node version 14.17.6
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.17.6
+          registry-url: https://registry.npmjs.org
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
