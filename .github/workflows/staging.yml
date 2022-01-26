@@ -1,12 +1,14 @@
-name: auction-service ci cd
+name: auction-service
 
 on: 
   push: 
     # tags:
     #   - 'v*'
+
+    
 jobs:
   Check:
-    name: auction-service ci cd
+    name: auction-service Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,6 +18,11 @@ jobs:
           node-version: 14.17.6
           registry-url: https://registry.npmjs.org
           
+
+  CICD:
+    name: auction-service ci cd
+    runs-on: ubuntu-latest
+    steps:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -78,3 +85,6 @@ jobs:
           service: auction-staging-copy
           cluster: crowdloan-staging-copy
           wait-for-service-stability: true
+
+
+          
