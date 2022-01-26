@@ -67,7 +67,7 @@ jobs:
             POSTGRES_DB_PORT=5432
             PARALLEL_POLKADOT_ENDPOINT=https://api.subquery.network/sq/parallel-finance/auction-subquery__cGFyY
             MONGO_DB_NAME=referral
-            REDIS_ENDPOINT=172.99.5.189:6379
+            REDIS_ENDPOINT=172.99.5.189:6378
             MONGO_DB_USER=referral
 
 
