@@ -52,23 +52,23 @@ jobs:
           container-name: auction-stagting-copy
           image: ${{ steps.build-image.outputs.image }}
           environment-variables: |
-            PARALLEL_HEIKO_CROWDLOAN_SUBQUERY_ENDPOINT: https://api.subquery.network/sq/parallel-finance/parallel-crowdloan-subql__cGFyY
-            POSTGRES_DB_HOST: refund-dev.cmjwalrf1qza.us-east-2.rds.amazonaws.com
-            SUBVIS_KUSAMA_ENDPOINT: http://172.99.22.119:3000
-            MONGO_DB_PASSWORD: 8LhlUv6exmVCDiK805ITcEp9j4Z5d71M
-            MONGO_DB_HOST: 172.99.20.146:27017
-            SUBVIS_POLKADOT_ENDPOINT: http://172.99.20.161:3000
-            POSTGRES_DB_PASSWORD: 61H9J5g3MPd4rOhAxsTRbLqne7IN647l
-            POSTGRES_DB_USER: refund_dev
-            PRICE_ENDPOINT: https://api.coinbase.com/v2/exchange-rates
-            PARALLEL_MOONBEAM_SUBQUERY_ENDPOINT: https://api.subquery.network/sq/parallel-finance/crowdloan-for-moonbeam__cGFyY
-            POSTGRES_DB_NAME: polkadot_auction_dev
-            MONGO_DB_AUTH_SOURCE: referral
-            POSTGRES_DB_PORT: 5432
-            PARALLEL_POLKADOT_ENDPOINT: https://api.subquery.network/sq/parallel-finance/auction-subquery__cGFyY
-            MONGO_DB_NAME: referral
-            REDIS_ENDPOINT: 172.99.5.189:6379
-            MONGO_DB_USER: referral
+            PARALLEL_HEIKO_CROWDLOAN_SUBQUERY_ENDPOINT=https://api.subquery.network/sq/parallel-finance/parallel-crowdloan-subql__cGFyY
+            POSTGRES_DB_HOST=refund-dev.cmjwalrf1qza.us-east-2.rds.amazonaws.com
+            SUBVIS_KUSAMA_ENDPOINT=http://172.99.22.119:3000
+            MONGO_DB_PASSWORD=8LhlUv6exmVCDiK805ITcEp9j4Z5d71M
+            MONGO_DB_HOST=172.99.20.146:27017
+            SUBVIS_POLKADOT_ENDPOINT=http://172.99.20.161:3000
+            POSTGRES_DB_PASSWORD=61H9J5g3MPd4rOhAxsTRbLqne7IN647l
+            POSTGRES_DB_USER=refund_dev
+            PRICE_ENDPOINT=https://api.coinbase.com/v2/exchange-rates
+            PARALLEL_MOONBEAM_SUBQUERY_ENDPOINT=https://api.subquery.network/sq/parallel-finance/crowdloan-for-moonbeam__cGFyY
+            POSTGRES_DB_NAME=polkadot_auction_dev
+            MONGO_DB_AUTH_SOURCE=referral
+            POSTGRES_DB_PORT=5432
+            PARALLEL_POLKADOT_ENDPOINT=https://api.subquery.network/sq/parallel-finance/auction-subquery__cGFyY
+            MONGO_DB_NAME=referral
+            REDIS_ENDPOINT=172.99.5.189:6379
+            MONGO_DB_USER=referral
 
 
       - name: Deploy Amazon ECS task definition
